@@ -1,5 +1,5 @@
 import { TCourse, TSemetser } from "../../../types/courseManagement.type";
-import { TResponseRedux } from "../../../types/globalErrorHandelar";
+import { TQueryParam, TResponseRedux } from "../../../types/globalErrorHandelar";
 import { baseApi } from "../../api/baseApi";
 
 const courseManagement=baseApi.injectEndpoints({
@@ -15,10 +15,17 @@ const courseManagement=baseApi.injectEndpoints({
         }),
         //...get all semester
         getAllSemester:builder.query({
-            query:()=>{
+            query:(args)=>{
+
+                const params= new URLSearchParams();
+
+            args.forEach((item:TQueryParam)=>{
+                params.append(item.name,item.value as string);
+            })
                 return {
                     url:"/semester-registration/",
-                    method:"GET"
+                    method:"GET",
+                    params:params
                 }
             },
 
@@ -75,11 +82,23 @@ const courseManagement=baseApi.injectEndpoints({
                 }
             },
             invalidatesTags:['phum']
-        })
+        }),
+        //courses/65c4d73b982a2a6fff160483/get-faculty
+        // get course with faculties
+        getCourseFaculties: builder.query({
+            query: (id) => {
+              return {
+                url: `courses/${id}/get-faculty`,
+                method: 'GET',
+              };
+            },
+            providesTags:['phum']
+            
+          }),
     })
 
 });
 
 export const{useAddSemesterMutation,useGetAllSemesterQuery,
     useUpdateSemesterStatusMutation,useGetAllCourseQuery,
-    useAddCoursesMutation,useAddCourseFacultiesMutation}=courseManagement
+    useAddCoursesMutation,useAddCourseFacultiesMutation,useGetCourseFacultiesQuery}=courseManagement
