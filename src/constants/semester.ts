@@ -11,3 +11,12 @@ export const nameOptions=[
     { value: 'ONGOING', label: 'Ongoing' },
     { value: 'ENDED', label: 'Ended' },
   ];
+  export const weeklyStatusOptions=[
+    {value:"Sat",label:"Saturday"},
+    {value:"Sun",label:"Sunday"},
+    {value:"Mon",label:"Monday"},
+    {value:"Tue",label:"Tuesday"},
+    {value:"Wed",label:"Wednesday"},
+    {value:"Thu",label:"Thursday"},
+    {value:"Fri",label:"Friday"}
+  ]

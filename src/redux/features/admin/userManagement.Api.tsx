@@ -69,9 +69,18 @@ const userManagement=baseApi.injectEndpoints({
                 return {data:response?.data,  meta: response?.meta};
             },
             providesTags:['phum']
+        }),
+        // chnage password 
+        chnagePassword:builder.mutation({
+            query:(data)=>({
+                url:"/login-user/change-password",
+                method:"POST",
+                body:data
+            }),
+            invalidatesTags:['phum']
         })
     })
 
 });
 export const  {useAddStudentMutation,useGetAllStudentsQuery,useGetStudentByIdQuery,
-    useUpdateStudentMutation,useGetAllFacultyQuery}=userManagement;
+    useUpdateStudentMutation,useGetAllFacultyQuery,useChnagePasswordMutation}=userManagement;

@@ -7,6 +7,7 @@ export const sidebarItemGenerator=(items:TUserPath[],role:string)=>{
     
         if(item.name && item.path)
         {
+           
             acc.push({key:item.name,label:<NavLink to={`/${role}/${item.path}`}>{item.name}</NavLink>})
         }
         
@@ -20,7 +21,7 @@ export const sidebarItemGenerator=(items:TUserPath[],role:string)=>{
                     if(child?.name){
                         return {
                             key:child.name!,
-                            label:<NavLink to={`/admin/${child.path}`}>{child.name}</NavLink>
+                            label:<NavLink to={`/${role}/${child.path}`}>{child.name}</NavLink>
                         }
                     }
                 })

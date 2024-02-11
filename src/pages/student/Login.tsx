@@ -36,7 +36,8 @@ const Login = () => {
       const user=varifyToken(res?.data?.accessToken) as TUser;
       dispatch(setUser({user:user,token:res?.data?.accessToken}));
       toast.success("Login In Success",{id:toastId,duration:2000});
-      navigate(`/${user?.role}/dashboard`);
+      res?.data?.needsPasswordChange?navigate('/change-password'): navigate(`/${user?.role}/dashboard`);
+     
       //dispatch(setUser(user:null,token:res?.data?.accessToken))
       }
       catch(error)
